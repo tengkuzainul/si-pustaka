@@ -17,7 +17,7 @@ class PengembalianController extends Controller
      */
     public function index()
     {
-        $returns = Pengembalian::with('peminjaman')->get();
+        $returns = Pengembalian::with('peminjaman')->latest()->get();
 
         return view('admin.pengembalian.index', compact('returns'));
     }
