@@ -48,17 +48,16 @@
 
     <header id="header">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row align-items-center">
 
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <div class="main-logo">
-                        <a href="{{ url('/') }}"><img src="{{ asset('assets/landing-page/images/main-logo.png') }}"
-                                alt="logo"></a>
+                        <h1 class=" display-4 text-dark">SI-PERPUS</h1>
                     </div>
 
                 </div>
 
-                <div class="col-md-10">
+                <div class="col-md-8">
 
                     <nav id="navbar">
                         <div class="main-menu stellarnav">

@@ -94,8 +94,7 @@
 
 <body>
     <header>
-        <img src="{{ asset('assets/image/Logo-PustakaConnect.png') }}" alt="Logo PustakaConnect" class="logo">
-        <h1 class="title">Laporan Transaksi</h1>
+        <h1 class="title">Borrowing And Return Book Report</h1>
     </header>
 
     <section>
@@ -121,7 +120,7 @@
                         <td>
                             {{ optional($d->pengembalian)->tanggal_pengembalian ? date('d F Y', strtotime($d->pengembalian->tanggal_pengembalian)) : 'Belum Mengembalikan' }}
                         </td>
-                        <td>Rp. {{ $d->pengembalian->denda ? number_format($d->pengembalian->denda) : 0 }}</td>
+                        <td>Rp. {{ number_format($d->pengembalian->denda ?? 0) }}</td>
                         <td style="text-align: center">
                             <span
                                 class="{{ $d->status == 'Belum' ? 'waiting' : 'success ' }}">{{ $d->status }}</span>

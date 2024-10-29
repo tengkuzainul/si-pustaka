@@ -79,7 +79,7 @@
                                 <button type="reset" class="btn btn-primary px-3"><i
                                         class="mdi mdi-rotate-right me-2"></i>Reset</button>
                                 <button type="submit" class="btn btn-success px-3"><i
-                                        class="mdi mdi-check-circle me-2"></i>Save Data</button>
+                                        class="mdi mdi-download me-2"></i>Downlod Data</button>
                             </div>
                         </div>
                     </div>
