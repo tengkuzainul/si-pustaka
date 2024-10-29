@@ -5,19 +5,19 @@
             <div class="navbar-brand-box">
                 <a href="{{ route('dashboard') }}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/dashboard/images/logo-sm.png') }}" alt="" height="22">
+                        <img src="{{ asset('assets/image/logo-smk.png') }}" alt="" height="32">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/dashboard/images/logo-dark.png') }}" alt="" height="17">
+                        <img src="{{ asset('assets/image/logo-smk.png') }}" alt="" height="65">
                     </span>
                 </a>
 
                 <a href="{{ route('dashboard') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/dashboard/images/logo-sm.png') }}" alt="" height="22">
+                        <img src="{{ asset('assets/image/logo-smk.png') }}" alt="" height="32">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/dashboard/images/logo-light.png') }}" alt="" height="18">
+                        <img src="{{ asset('assets/image/logo-smk.png') }}" alt="" height="65">
                     </span>
                 </a>
             </div>

@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/dashboard/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/image/logo-smk.png') }}">
 
     <link href="{{ asset('assets/dashboard/libs/chartist/chartist.min.css') }}" rel="stylesheet">
 
@@ -42,4 +42,11 @@
     <!-- Lightbox css -->
     <link href="{{ asset('assets/dashboard/libs/magnific-popup/magnific-popup.css') }}" rel="stylesheet"
         type="text/css" />
+
+    <!-- Include Chartist CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chartist/dist/chartist.min.css">
+    <!-- Include Chartist JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chartist/dist/chartist.min.js"></script>
+    <!-- Include Chartist Tooltip Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
 </head>

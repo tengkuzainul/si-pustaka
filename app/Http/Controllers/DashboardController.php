@@ -21,27 +21,20 @@ class DashboardController extends Controller
         $books = Buku::all();
         $kategoriBuku = KategoriBuku::all();
 
-        // $userL = User::where('gender', 'L')->count();
-        // $userP = User::where('gender', 'P')->count();
-        // $memberL = Member::where('gender', 'L')->count();
-        // $memberP = Member::where('gender', 'P')->count();
-        // $jumlahLakiLaki = $userL + $memberL;
-        // $jumlahPerempuan = $userP + $memberP;
+        $tahun = date('Y');
+        $total = [];
+        $bulan = [];
+        $bulanIni = date('m');
 
-        // $tahun = date('Y');
-        // $total = [];
-        // $bulanIni = date('m');
-        // for ($i = 1; $i <= $bulanIni; $i++) {
-        //     $totalPeminjaman = Peminjaman::whereYear('created_at', $tahun)
-        //         ->whereMonth('created_at', $i)
-        //         ->get()
-        //         ->count();
+        for ($i = 1; $i <= $bulanIni; $i++) {
+            $totalPeminjaman = Peminjaman::whereYear('created_at', $tahun)
+                ->whereMonth('created_at', $i)
+                ->count();
 
-        //     $bulan[] = Carbon::create()->month($i)->format('F');
-        //     $total[] = $totalPeminjaman;
-        // }
+            $bulan[] = Carbon::create()->month($i)->format('F');
+            $total[] = $totalPeminjaman;
+        }
 
-        // return view('dashboard', compact('member', 'books', 'kategoriBuku', 'jumlahLakiLaki', 'jumlahPerempuan', 'bulan', 'total'));
-        return view('dashboard', compact('member', 'books', 'kategoriBuku'));
+        return view('dashboard', compact('member', 'books', 'kategoriBuku', 'bulan', 'total'));
     }
 }

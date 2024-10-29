@@ -16,7 +16,7 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/dashboard/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/image/logo-smk.png') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/landing-page/css/normalize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/landing-page/icomoon/icomoon.cs') }}s">

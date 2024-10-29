@@ -32,6 +32,11 @@ Route::middleware(['auth', 'role:Superadmin'])->group(function () {
         Route::delete('/delete/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
     });
 
+    Route::prefix('denda')->group(function () {
+        Route::get('/setting', [DendaController::class, 'index'])->name('denda.setting');
+        Route::put('/update', [DendaController::class, 'update'])->name('denda.update');
+    });
+
     Route::prefix('laporan')->group(function () {
         Route::controller(LaporanController::class)->group(function () {
             Route::get('/form', 'formCetak')->name('cetak.form');
@@ -41,6 +46,8 @@ Route::middleware(['auth', 'role:Superadmin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:Superadmin,Admin'])->group(function () {
+    Route::get('/chart', [DashboardController::class, 'borrowingTotalPerMonth']);
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('profile')->group(function () {
@@ -77,10 +84,7 @@ Route::middleware(['auth', 'role:Superadmin,Admin'])->group(function () {
         Route::delete('/delete/{id}', [KategoriBukuController::class, 'destroy'])->name('kategori.destroy');
     });
 
-    Route::prefix('denda')->group(function () {
-        Route::get('/setting', [DendaController::class, 'index'])->name('denda.setting');
-        Route::put('/update', [DendaController::class, 'update'])->name('denda.update');
-    });
+
 
     Route::prefix('peminjaman')->group(function () {
         Route::get('/list', [PeminjamanController::class, 'index'])->name('peminjaman');

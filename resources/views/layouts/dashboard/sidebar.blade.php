@@ -15,14 +15,16 @@
                     </a>
                 </li>
 
-                <li class="menu-title">User Management</li>
+                @role('super-admin')
+                    <li class="menu-title">User Management</li>
 
-                <li class="{{ Request::is('users/*') ? 'mm-active' : '' }}">
-                    <a href="{{ route('users') }}" class=" waves-effect {{ Request::is('users/*') ? 'active' : '' }}">
-                        <i class="fa fa-users"></i>
-                        <span>All Users</span>
-                    </a>
-                </li>
+                    <li class="{{ Request::is('users/*') ? 'mm-active' : '' }}">
+                        <a href="{{ route('users') }}" class=" waves-effect {{ Request::is('users/*') ? 'active' : '' }}">
+                            <i class="fa fa-users"></i>
+                            <span>All Users</span>
+                        </a>
+                    </li>
+                @endrole
 
                 <li class="menu-title">Member Management</li>
 
@@ -67,12 +69,14 @@
                     </ul>
                 </li>
 
-                <li class="{{ Request::is('denda/*') ? 'mm-active' : '' }}">
-                    <a href="{{ route('denda.setting') }}"
-                        class="waves-effect {{ Request::is('denda/*') ? 'active' : '' }}">
-                        <i class="mdi mdi-cash-multiple"></i> Setting Late Charge
-                    </a>
-                </li>
+                @role('super-admin')
+                    <li class="{{ Request::is('denda/*') ? 'mm-active' : '' }}">
+                        <a href="{{ route('denda.setting') }}"
+                            class="waves-effect {{ Request::is('denda/*') ? 'active' : '' }}">
+                            <i class="mdi mdi-cash-multiple"></i> Setting Late Charge
+                        </a>
+                    </li>
+                @endrole
 
                 <li class="menu-title">Library Management</li>
 
@@ -92,13 +96,15 @@
                     </a>
                 </li>
 
-                <li class="menu-title">Report</li>
-                <li class="{{ Request::is('laporan/form') ? 'mm-active' : '' }}">
-                    <a href="{{ route('cetak.form') }}"
-                        class="waves-effect {{ Request::is('laporan/form') ? 'active' : '' }}">
-                        <i class="fa fa-download"></i> Report Library
-                    </a>
-                </li>
+                @role('super-admin')
+                    <li class="menu-title">Report</li>
+                    <li class="{{ Request::is('laporan/form') ? 'mm-active' : '' }}">
+                        <a href="{{ route('cetak.form') }}"
+                            class="waves-effect {{ Request::is('laporan/form') ? 'active' : '' }}">
+                            <i class="fa fa-download"></i> Report Library
+                        </a>
+                    </li>
+                @endrole
             </ul>
         </div>
         <!-- Sidebar -->
