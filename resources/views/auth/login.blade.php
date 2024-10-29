@@ -24,9 +24,11 @@
     <!-- App Css-->
     <link href="{{ asset('assets/dashboard/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 </head>
 
-<body class="account-pages">
+<body class="account-pages" data-bs-theme="dark">
     <!-- Begin page -->
     <div class="accountbg"
         style="background: url('{{ asset('assets/image/perpus.png') }}');background-size: cover;background-position: center; opacity: 76%;">
@@ -42,17 +44,21 @@
                     <div class="card-box shadow-none p-4">
                         <div class="p-2">
                             <div class="text-center mt-4">
-                                <a href="index.html" class="logo logo-dark">
+                                <a href="{{ url('/login') }}" class="logo logo-dark">
                                     <span class="logo-lg">
-                                        <img src="{{ asset('assets/dashboard/images/logo-dark.png') }}" alt=""
-                                            height="17">
+                                        <img src="{{ asset('assets/image/logo-smk.png') }}" alt=""
+                                            height="70">
                                     </span>
+                                    <span class="h5 text-dark">SISTEM INFORMASI PERPUSTAKAAN</span>
                                 </a>
 
                                 <a href="{{ url('/login') }}" class="logo logo-light">
                                     <span class="logo-lg">
-                                        <img src="{{ asset('assets/dashboard/images/logo-light.png') }}" alt=""
-                                            height="18">
+                                        <span class="logo-lg">
+                                            <img src="{{ asset('assets/image/logo-smk.png') }}" alt=""
+                                                height="70">
+                                        </span>
+                                        <span class="h5 text-white">SISTEM INFORMASI PERPUSTAKAAN</span>
                                     </span>
                                 </a>
                             </div>
@@ -64,7 +70,7 @@
                                 @csrf
 
                                 <div class="mb-3">
-                                    <label class="form-label" for="email">Username</label>
+                                    <label class="form-label" for="email">Email</label>
                                     <input type="email" name="email" value="{{ old('email') }}"
                                         class="form-control @error('email')
                                         is-invalid
@@ -102,8 +108,10 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6 text-end">
-                                        <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log
-                                            In</button>
+                                        <button class="btn btn-primary rounded-pill w-lg waves-effect waves-light"
+                                            type="submit">Log
+                                            In <i
+                                                class="ms-2 {{ $errors->any() ? 'bi bi-emoji-frown-fill' : 'bi bi-emoji-smile-fill' }}"></i></button>
                                     </div>
                                 </div>
 
