@@ -156,6 +156,24 @@
                                             </div>
                                             <!-- /.modal -->
                                         </tr>
+
+                                        <script>
+                                            const delayReturnElements = document.querySelectorAll('.delayreturn');
+
+                                            delayReturnElements.forEach(function(element) {
+                                                const returnDate = new Date(element.getAttribute('data-return-date'));
+                                                const tanggalPengembalian = new Date(element.getAttribute('data-tanggal-pengembalian'));
+
+                                                const timeDiff = tanggalPengembalian - returnDate;
+
+                                                let delayDays = 0;
+                                                if (timeDiff > 0) {
+                                                    delayDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                                                }
+
+                                                element.innerText = delayDays;
+                                            });
+                                        </script>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -165,22 +183,4 @@
             </div> <!-- end col -->
         </div>
     </div>
-
-    <script>
-        const delayReturnElements = document.querySelectorAll('.delayreturn');
-
-        delayReturnElements.forEach(function(element) {
-            const returnDate = new Date(element.getAttribute('data-return-date'));
-            const tanggalPengembalian = new Date(element.getAttribute('data-tanggal-pengembalian'));
-
-            const timeDiff = tanggalPengembalian - returnDate;
-
-            let delayDays = 0;
-            if (timeDiff > 0) {
-                delayDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-            }
-
-            element.innerText = delayDays;
-        });
-    </script>
 @endsection

@@ -272,6 +272,17 @@
                                             </div>
                                             <!-- /.modal -->
                                         </tr>
+
+                                        <script>
+                                            const lendDate = new Date('{{ $borrowing->lend_date }}') ?? '';
+                                            const returnDate = new Date('{{ $borrowing->return_date }}') ?? '';
+
+                                            const timeDiff = returnDate - lendDate;
+
+                                            const daysDue = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+                                            document.getElementById('daysDue').innerText = daysDue;
+                                        </script>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -281,15 +292,4 @@
             </div> <!-- end col -->
         </div>
     </div>
-
-    <script>
-        const lendDate = new Date('{{ $borrowing->lend_date }}');
-        const returnDate = new Date('{{ $borrowing->return_date }}');
-
-        const timeDiff = returnDate - lendDate;
-
-        const daysDue = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-
-        document.getElementById('daysDue').innerText = daysDue;
-    </script>
 @endsection

@@ -69,7 +69,7 @@
                     </ul>
                 </li>
 
-                @role('super-admin')
+                @role('Superadmin')
                     <li class="{{ Request::is('denda/*') ? 'mm-active' : '' }}">
                         <a href="{{ route('denda.setting') }}"
                             class="waves-effect {{ Request::is('denda/*') ? 'active' : '' }}">
@@ -96,7 +96,7 @@
                     </a>
                 </li>
 
-                @role('super-admin')
+                @role('Superadmin')
                     <li class="menu-title">Report</li>
                     <li class="{{ Request::is('laporan/form') ? 'mm-active' : '' }}">
                         <a href="{{ route('cetak.form') }}"
