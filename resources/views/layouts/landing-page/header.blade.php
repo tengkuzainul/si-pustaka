@@ -23,9 +23,50 @@
                 </div>
                 <div class="col-md-6">
                     <div class="right-element">
-                        <a href="{{ route('login') }}" class="user-account for-buy"><i
-                                class="icon icon-user"></i><span>&nbsp;Login
-                                Administrator</span></a>
+                        @guest
+                            <a href="{{ route('login') }}" class="user-account for-buy"><i
+                                    class="icon icon-user"></i><span>&nbsp;Login
+                                    Portal</span></a>
+                        @endguest
+
+                        @auth
+                            <a href="{{ url('/') }}" class="user-account for-buy" style="pointer-events: none"><i
+                                    class="icon icon-user"></i><span>&nbsp;{{ Auth::user()->name }}</span></a>
+                            <a href="{{ route('login') }}" class="user-account for-buy" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"><i class="fa fa-sign-out"></i><span>&nbsp;Logout</span></a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Hi, {{ Auth::user()->name }}
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-start fw-bold text-capitalize fs-3">Apakah anda yakin ingin
+                                                logout?
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer gap-3">
+                                            <button type="button" class="btn btn-secondary rounded"
+                                                data-bs-dismiss="modal">Tidak</button>
+                                            <button type="button" class="btn btn-primary rounded"
+                                                onclick="event.preventDefault(); document.getElementById('formLogout').submit();">Ya,
+                                                Yakin</button>
+
+                                            <form action="{{ route('logout') }}" id="formLogout" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endauth
 
                         <div class="action-menu">
 
@@ -63,12 +104,18 @@
                         <div class="main-menu stellarnav">
                             <ul class="menu-list">
                                 <li class="menu-item {{ Request::is('/') ? 'active' : '' }}"><a
-                                        href="{{ url('/') }}">Home</a></li>
+                                        href="{{ url('/') }}">Beranda</a></li>
 
                                 <li class="menu-item {{ Request::is('books/books-catalog') ? 'active' : '' }}"><a
-                                        href="{{ route('book.catalog') }}" class="nav-link">Books
-                                        Catalog</a></li>
+                                        href="{{ route('book.catalog') }}" class="nav-link">Katalog Buku</a></li>
                                 </li>
+
+                                @auth
+                                    <li class="menu-item {{ Request::is('books/books-catalog') ? 'active' : '' }}"><a
+                                            href="{{ route('book.catalog') }}" class="nav-link">Data Peminjaman Saya</a>
+                                    </li>
+                                    </li>
+                                @endauth
                             </ul>
 
                             <div class="hamburger">

@@ -28,7 +28,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        if ($user->role === 'Superadmin' || $user->role === 'Operator') {
+            return redirect()->intended(route('dashboard', absolute: false));
+        } elseif ($user->role === 'Siswa') {
+            return redirect()->intended('/');
+        } else {
+            Auth::guard('web')->logout();
+            return redirect()->route('login')->withErrors([
+                'error' => 'Akses tidak diizinkan. Silakan hubungi administrator.',
+            ]);
+        }
     }
 
     /**

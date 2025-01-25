@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('members', function (Blueprint $table) {
+        Schema::create('siswa_data', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_member');
-            $table->string('alamat');
+            $table->string('class');
             $table->enum('gender', ['L', 'P']);
-            $table->string('no_hp');
-            $table->string('email');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('members');
+        Schema::dropIfExists('siswa_data');
     }
 };

@@ -70,14 +70,14 @@
                                 @csrf
 
                                 <div class="mb-3">
-                                    <label class="form-label" for="email">Email</label>
-                                    <input type="email" name="email" value="{{ old('email') }}"
-                                        class="form-control @error('email')
+                                    <label class="form-label" for="login">Email/NISN</label>
+                                    <input type="text" name="login" value="{{ old('login') }}"
+                                        class="form-control @error('login')
                                         is-invalid
                                     @enderror"
-                                        id="email" placeholder="Enter email">
+                                        id="login" placeholder="Enter Email Or NISN">
 
-                                    @error('email')
+                                    @error('login')
                                         <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                         </div>
@@ -89,7 +89,7 @@
                                     <label class="form-label" for="password">Password</label>
                                     <input type="password" name="password"
                                         class="form-control @error('password') is-invalid @enderror" id="password"
-                                        placeholder="Enter password">
+                                        placeholder="Enter Password">
 
                                     @error('password')
                                         <div class="invalid-feedback">

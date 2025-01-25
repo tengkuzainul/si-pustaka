@@ -12,21 +12,15 @@ class ItemLends extends Model
     protected $table = 'item_lends';
 
     protected $fillable =
-        [
-            'qty',
-            'lends_id',
-            'buku_id',
-            'member_id',
-        ];
+    [
+        'qty',
+        'lends_id',
+        'buku_id',
+    ];
 
     public function buku()
     {
         return $this->belongsTo(Buku::class, 'buku_id');
-    }
-
-    public function member()
-    {
-        return $this->belongsTo(Member::class, 'member_id');
     }
 
     public function lend()

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.app', ['title' => 'Members'])
+@extends('layouts.dashboard.app', ['title' => 'Siswa'])
 
 @section('content')
     <div class="container-fluid">
@@ -7,10 +7,10 @@
         <div class="page-title-box">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h6 class="page-title">Members</h6>
+                    <h6 class="page-title">Siswa</h6>
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('member') }}">Members Management</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('siswa') }}">Siswa Management</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Data</li>
                     </ol>
                 </div>
@@ -20,10 +20,10 @@
                         <div class="dropdown">
                             <button class="btn btn-primary  dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="mdi mdi-account-box me-2"></i> Create Member
+                                <i class="mdi mdi-account-box me-2"></i> Create Siswa
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="{{ route('member.create') }}">Add New Data</a>
+                                <a class="dropdown-item" href="{{ route('siswa.create') }}">Add New Data</a>
                             </div>
                         </div>
                     </div>
@@ -44,40 +44,33 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Member Name</th>
+                                        <th>Siswa Name</th>
                                         <th>Email</th>
-                                        <th>Address</th>
+                                        <th>NISN</th>
                                         <th>Gender</th>
-                                        <th>Phone</th>
+                                        <th>Class</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
 
 
                                 <tbody>
-                                    @foreach ($members as $member)
+                                    @foreach ($siswas as $siswa)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $member->nama_member }}</td>
-                                            <td>{{ $member->email }}</td>
-                                            <td>{{ $member->alamat }}</td>
+                                            <td>{{ $siswa->name }}</td>
+                                            <td>{{ $siswa->email }}</td>
+                                            <td>{{ $siswa->username }}</td>
+                                            <td>{{ $siswa->dataSiswa->gender == 'L' ? 'Laki Laki' : 'Perempuan' }}</td>
                                             <td>
-                                                <span
-                                                    class="badge bg-{{ $member->gender == 'L' ? 'primary' : 'info' }} w-100">{{ $member->gender == 'L' ? 'Laki Laki' : 'Perempuan' }}</span>
-                                            </td>
-                                            <td>
-                                                <a href="https://wa.me/{{ $member->no_hp }}" target="_blank"
-                                                    class="btn btn-success btn-rounded">
-                                                    <i class="mdi mdi-whatsapp me-2"></i>{{ $member->no_hp }}
-                                                </a>
+                                                <span class="badge bg-primary w-100">{{ $siswa->dataSiswa->class }}</span>
                                             </td>
                                             <td>
                                                 <div class="d-flex justify-content-center align-items-center gap-2">
-                                                    <a href="{{ route('member.edit', $member->id) }}"
-                                                        class="btn btn-warning">
+                                                    <a href="{{ route('siswa.edit', $siswa->id) }}" class="btn btn-warning">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="{{ route('member.destroy', $member->id) }}"
+                                                    <a href="{{ route('siswa.destroy', $siswa->id) }}"
                                                         class="btn btn-danger" data-confirm-delete="true">
                                                         <i class="fa fa-trash"></i>
                                                     </a>

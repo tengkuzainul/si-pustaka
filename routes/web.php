@@ -6,20 +6,18 @@ use App\Http\Controllers\DendaController;
 use App\Http\Controllers\KategoriBukuController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['guest'])->group(function () {
-    Route::get('/', [LandingPageController::class, 'index']);
-    Route::prefix('books')->group(function () {
-        Route::get('/books-catalog', [LandingPageController::class, 'catalog'])->name('book.catalog');
-        Route::get('/detail/{id}', [LandingPageController::class, 'bookDetail'])->name('book.detail');
-    });
+Route::get('/', [LandingPageController::class, 'index']);
+Route::prefix('books')->group(function () {
+    Route::get('/books-catalog', [LandingPageController::class, 'catalog'])->name('book.catalog');
+    Route::get('/detail/{id}', [LandingPageController::class, 'bookDetail'])->name('book.detail');
 });
 
 Route::middleware(['auth', 'role:Superadmin'])->group(function () {
@@ -67,14 +65,14 @@ Route::middleware(['auth', 'role:Superadmin,Admin'])->group(function () {
         Route::delete('/destroy/{buku}', [BukuController::class, 'destroy'])->name('buku.destroy');
     });
 
-    Route::prefix('member')->group(function () {
-        Route::get('/list', [MemberController::class, 'index'])->name('member');
-        Route::get('/create', [MemberController::class, 'create'])->name('member.create');
-        Route::post('/store', [MemberController::class, 'store'])->name('member.store');
-        Route::get('/show/{id}', [MemberController::class, 'show'])->name('member.show');
-        Route::get('/edit/{id}', [MemberController::class, 'edit'])->name('member.edit');
-        Route::put('/update/{id}', [MemberController::class, 'update'])->name('member.update');
-        Route::delete('/delete/{id}', [MemberController::class, 'destroy'])->name('member.destroy');
+    Route::prefix('siswa')->group(function () {
+        Route::get('/list', [SiswaController::class, 'index'])->name('siswa');
+        Route::get('/create', [SiswaController::class, 'create'])->name('siswa.create');
+        Route::post('/store', [SiswaController::class, 'store'])->name('siswa.store');
+        Route::get('/show/{id}', [SiswaController::class, 'show'])->name('siswa.show');
+        Route::get('/edit/{id}', [SiswaController::class, 'edit'])->name('siswa.edit');
+        Route::put('/update/{id}', [SiswaController::class, 'update'])->name('siswa.update');
+        Route::delete('/delete/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
     });
 
     Route::prefix('kategori-buku')->group(function () {

@@ -56,4 +56,14 @@ class User extends Authenticatable
 
         return $this->all();
     }
+
+    public function dataSiswa()
+    {
+        return $this->hasOne(SiswaData::class, 'user_id', 'id');
+    }
+
+    public function lends()
+    {
+        return $this->hasMany(Peminjaman::class, 'siswa_id', 'id');
+    }
 }

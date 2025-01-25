@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('qty');
             $table->foreignId('lends_id')->constrained()->cascadeOnDelete();
             $table->foreignUuid('buku_id')->references('id')->on('bukus')->onDelete('cascade');
-            $table->foreignId('member_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

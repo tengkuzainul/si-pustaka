@@ -14,16 +14,16 @@ class Peminjaman extends Model
     protected $guarded = ['id'];
 
     protected $fillable =
-        [
-            'number',
-            'lend_date',
-            'return_date',
-            'member_id',
-        ];
+    [
+        'number',
+        'lend_date',
+        'return_date',
+        'siswa_id',
+    ];
 
-    public function member()
+    public function siswaID()
     {
-        return $this->belongsTo(Member::class, 'member_id');
+        return $this->belongsTo(User::class, 'siswa_id', 'id');
     }
 
     public function itemLend()

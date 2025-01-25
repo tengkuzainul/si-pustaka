@@ -17,10 +17,10 @@ return new class extends Migration
             $table->date('lend_date');
             $table->date('return_date');
             $table->enum('status', ['Belum', 'Kembali']);
-            $table->unsignedBigInteger('member_id');
+            $table->unsignedBigInteger('siswa_id');
             $table->timestamps();
 
-            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+            $table->foreign('siswa_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

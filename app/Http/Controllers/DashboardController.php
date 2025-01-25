@@ -17,7 +17,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $member = Member::latest()->get();
+        $siswa = User::with('dataSiswa')
+            ->where('role', 'Siswa')
+            ->latest()
+            ->get();
         $books = Buku::all();
         $kategoriBuku = KategoriBuku::all();
 
@@ -35,6 +38,6 @@ class DashboardController extends Controller
             $total[] = $totalPeminjaman;
         }
 
-        return view('dashboard', compact('member', 'books', 'kategoriBuku', 'bulan', 'total'));
+        return view('dashboard', compact('siswa', 'books', 'kategoriBuku', 'bulan', 'total'));
     }
 }

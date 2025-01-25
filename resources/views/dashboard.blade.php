@@ -42,8 +42,8 @@
                             <div class="float-start mini-stat-img me-4">
                                 <img src="{{ asset('assets/dashboard/images/services-icon/01.png') }}" alt="">
                             </div>
-                            <h5 class="font-size-16 text-uppercase text-white-50">Members</h5>
-                            <h4 class="fw-medium font-size-24">{{ $member ? count($member) : 0 }}</h4>
+                            <h5 class="font-size-16 text-uppercase text-white-50">Siswa</h5>
+                            <h4 class="fw-medium font-size-24">{{ $siswa ? count($siswa) : 0 }}</h4>
                         </div>
                         <div class="pt-2">
                             <div class="float-end">

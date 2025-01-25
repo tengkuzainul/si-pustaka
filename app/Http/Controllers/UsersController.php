@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::whereNot('role', 'Siswa')->latest()->get();
 
         $title = 'Delete User!';
         $text = "Are you sure you want to delete?";

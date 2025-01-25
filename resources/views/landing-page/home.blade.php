@@ -1,4 +1,4 @@
-@extends('layouts.landing-page.app', ['title' => 'Home'])
+@extends('layouts.landing-page.app', ['title' => 'Beranda'])
 
 @section('content')
     <section id="billboard">
@@ -74,7 +74,7 @@
                                             <span>{{ $book->kategoriBuku->nama_kategori }}</span>
                                             <div class="item-price">
                                                 {{ $book->stok_buku === 0 ? 'Buku Habis.' : number_format($book->stok_buku) . ' Pcs' }}
-                                                &mdash; {{ $book->stok_buku === 0 ? 'Bisa Dipinjam' : 'Habis' }}
+                                                &mdash; {{ $book->stok_buku > 0 ? 'Bisa Dipinjam' : 'Habis' }}
                                             </div>
                                         </figcaption>
                                     </div>

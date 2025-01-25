@@ -15,7 +15,7 @@
                     </a>
                 </li>
 
-                @role('super-admin')
+                @role('Superadmin')
                     <li class="menu-title">User Management</li>
 
                     <li class="{{ Request::is('users/*') ? 'mm-active' : '' }}">
@@ -26,20 +26,20 @@
                     </li>
                 @endrole
 
-                <li class="menu-title">Member Management</li>
+                <li class="menu-title">Siswa Management</li>
 
                 <li class="{{ Request::is('member/*') ? 'mm-active' : '' }}">
                     <a href="javascript: void(0);"
                         class="has-arrow waves-effect {{ Request::is('member/list') ? ' mm-active' : '' }}">
                         <i class="fa fa-id-card"></i>
-                        <span>Members</span>
+                        <span>Siswa</span>
                     </a>
                     <ul class="sub-menu {{ Request::is('member/*') ? 'mm-collapse mm-show' : '' }}"
                         aria-expanded="false">
-                        <li class="{{ Request::is('member/*') ? 'mm-active' : '' }}"><a
-                                href="{{ route('member') }}"><span
-                                    class="badge rounded-pill bg-primary float-end">{{ \App\Models\Member::count() }}</span>
-                                <span>All Members</span></a></li>
+                        <li class="{{ Request::is('siswa/*') ? 'mm-active' : '' }}"><a
+                                href="{{ route('siswa') }}"><span
+                                    class="badge rounded-pill bg-primary float-end">{{ \App\Models\User::where('role', 'Siswa')->count() }}</span>
+                                <span>All Siswa</span></a></li>
                     </ul>
                 </li>
 
@@ -83,7 +83,7 @@
                 <li class="{{ Request::is('peminjaman/list') ? 'mm-active' : '' }}">
                     <a href="{{ route('peminjaman') }}"
                         class="waves-effect {{ Request::is('peminjaman/list') ? 'active' : '' }}">
-                        <i class="fa fa-share"></i><span class="badge rounded-pill bg-primary float-end">1</span>
+                        <i class="fa fa-share"></i><span class="badge rounded-pill bg-primary float-end"></span>
                         <span>Book Borrowing</span>
                     </a>
                 </li>
@@ -91,7 +91,7 @@
                 <li class="{{ Request::is('pengembalian/list') ? 'mm-active' : '' }}">
                     <a href="{{ route('pengembalian') }}"
                         class="waves-effect {{ Request::is('pengembalian/list') ? 'active' : '' }}">
-                        <i class="fa fa-reply"></i><span class="badge rounded-pill bg-primary float-end">1</span>
+                        <i class="fa fa-reply"></i><span class="badge rounded-pill bg-primary float-end"></span>
                         <span>Book Return</span>
                     </a>
                 </li>

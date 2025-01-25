@@ -6,10 +6,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="colored">
-                        <h1 class="page-title">Book Catalog</h1>
+                        <h1 class="page-title">Katalog Buku</h1>
                         <div class="breadcum-items">
-                            <span class="item"><a href="{{ url('/') }}">Home /</a></span>
-                            <span class="item colored">Catalog</span>
+                            <span class="item"><a href="{{ url('/') }}">Beranda /</a></span>
+                            <span class="item colored">List Buku</span>
                         </div>
                     </div>
                 </div>
