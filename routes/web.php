@@ -10,6 +10,7 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PemijamanSiswaController;
+use App\Http\Controllers\PengembalianSiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UsersController;
@@ -109,6 +110,7 @@ Route::middleware(['auth', 'role:Siswa'])->group(function () {
     Route::prefix('siswa')->group(function () {
         Route::get('/peminjamanku', [PemijamanSiswaController::class, 'index'])->name('siswa.peminjaman');
         Route::post('/peminjamanku/store', [PemijamanSiswaController::class, 'store'])->name('siswa.peminjaman.store');
+        Route::get('/pengembalianku', [PengembalianSiswaController::class, 'index'])->name('siswa.pengembalian');
     });
 });
 

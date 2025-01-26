@@ -115,6 +115,9 @@
                                             href="{{ route('siswa.peminjaman') }}" class="nav-link">Data Peminjaman
                                             Saya</a>
                                     </li>
+                                    <li class="menu-item {{ request()->routeIs('siswa.pengembalian') ? 'active' : '' }}"><a
+                                            href="{{ route('siswa.pengembalian') }}" class="nav-link">Data Pengembalian
+                                            Saya</a>
                                     </li>
                                 @endauth
                             </ul>

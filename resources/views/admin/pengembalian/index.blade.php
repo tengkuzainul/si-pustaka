@@ -47,13 +47,22 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
                                                 <span
-                                                    class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">{{ $return->peminjaman->number }}</span>
+                                                    class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">
+                                                    {{ $return->peminjaman->number }}
+                                                </span>
                                             </td>
                                             <td>
-                                                <span
-                                                    class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">{{ $return->peminjaman->member->nama_member }}</span>
+                                                @if ($return->peminjaman->siswa)
+                                                    <span
+                                                        class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">
+                                                        {{ $return->peminjaman->siswa->name }}
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-danger">No Member</span>
+                                                @endif
                                             </td>
-                                            <td>{{ date('d F Y', strtotime($return->peminjaman->return_date)) }}</td>
+                                            <td>{{ date('d F Y', strtotime($return->peminjaman->return_date)) }}
+                                            </td>
                                             <td>{{ date('d F Y', strtotime($return->tanggal_pengembalian)) }}</td>
                                             <td>
                                                 <span class="delayreturn"
@@ -81,7 +90,7 @@
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="modalUpdatedLabel">
                                                                 Detail Borrowing |
-                                                                {{ $return->peminjaman->member->nama_member }}
+                                                                {{ $return->peminjaman->siswa->name }}
                                                             </h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
@@ -92,21 +101,21 @@
                                                                 <div class="col-md-12">
                                                                     <div class="d-flex justify-content-start gap-3">
                                                                         <div class="mx-1">
-                                                                            <p class="text-body fw-medium">Member Name
-                                                                            </p>
-                                                                            <p class="text-body fw-medium">Early Return Date
-                                                                            </p>
-                                                                            </p>
-                                                                            <p class="text-body fw-medium">Return Date
-                                                                            </p>
-                                                                            <p class="text-body fw-medium">Delay Return</p>
+                                                                            <p class="text-body fw-medium">Member
+                                                                                Name</p>
+                                                                            <p class="text-body fw-medium">Early
+                                                                                Return Date</p>
+                                                                            <p class="text-body fw-medium">Return
+                                                                                Date</p>
+                                                                            <p class="text-body fw-medium">Delay
+                                                                                Return</p>
                                                                             <p class="text-body fw-medium">Book
                                                                                 Borrowing</p>
                                                                         </div>
                                                                         <div class="mx-1">
                                                                             <p class="text-body fw-medium">
                                                                                 <span
-                                                                                    class="me-2">:</span>{{ $return->peminjaman->member->nama_member }}
+                                                                                    class="me-2">:</span>{{ $return->peminjaman->siswa->name }}
                                                                             </p>
                                                                             <p class="text-body fw-medium">
                                                                                 <span
@@ -139,7 +148,6 @@
                                                                                     </li>
                                                                                 @endforeach
                                                                             </ul>
-                                                                            </p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -175,6 +183,7 @@
                                             });
                                         </script>
                                     @endforeach
+
                                 </tbody>
                             </table>
                         </div>

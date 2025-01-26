@@ -17,10 +17,13 @@ class PengembalianController extends Controller
      */
     public function index()
     {
-        $returns = Pengembalian::with('peminjaman')->latest()->get();
+        $returns = Pengembalian::with(['peminjaman', 'peminjaman.siswa', 'peminjaman.itemLend', 'peminjaman.itemLend.buku'])
+            ->latest()
+            ->get();
 
         return view('admin.pengembalian.index', compact('returns'));
     }
+
 
     /**
      * Store a newly created resource in storage.
