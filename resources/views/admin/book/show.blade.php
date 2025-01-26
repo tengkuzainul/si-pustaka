@@ -10,7 +10,7 @@
                     <h6 class="page-title">Show Book</h6>
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('users') }}">Books Management</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('buku') }}">Books Management</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Show</li>
                     </ol>
                 </div>

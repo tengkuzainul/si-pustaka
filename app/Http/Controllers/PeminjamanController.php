@@ -10,6 +10,7 @@ use App\Models\Peminjaman;
 use App\Models\User;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
@@ -18,7 +19,7 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $data = Peminjaman::with('member', 'itemLend', 'pengembalian')
+        $data = Peminjaman::with('siswa', 'itemLend', 'pengembalian')
             ->latest()
             ->get();
 
@@ -31,10 +32,10 @@ class PeminjamanController extends Controller
 
     public function create()
     {
-        $members = Member::all();
+        $siswas = User::with('dataSiswa')->where('role', 'Siswa')->get();
         $books = Buku::all();
 
-        return view('admin.peminjaman.create', compact('members', 'books'));
+        return view('admin.peminjaman.create', compact('siswas', 'books'));
     }
 
     /**
@@ -43,48 +44,52 @@ class PeminjamanController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'member_id' => 'required|exists:members,id',
+            'user_id' => 'required|exists:users,id',
             'borrowing_date' => 'required|date',
             'return_date' => 'required|date|after_or_equal:borrowing_date',
+            'buku_id' => 'required|array',
             'buku_id.*' => 'required|exists:bukus,id',
+            'qty' => 'required|array',
             'qty.*' => 'required|integer|min:1',
         ]);
 
-        $peminjaman = Peminjaman::create([
-            'number' => $this->generateNumberLend(),
-            'lend_date' => $data['borrowing_date'],
-            'return_date' => $data['return_date'],
-            'member_id' => $data['member_id'],
-        ]);
+        DB::beginTransaction();
 
-        foreach ($data['buku_id'] as $index => $buku_id) {
-            $qty = $data['qty'][$index];
-
-            $buku = Buku::findOrFail($buku_id);
-            $buku->stok_buku -= $qty;
-            $buku->save();
-
-            ItemLends::create([
-                'qty' => $qty,
-                'lends_id' => $peminjaman->id,
-                'buku_id' => $buku_id,
-                'member_id' => $data['member_id'],
-                'status' => 'Belum',
+        try {
+            $peminjaman = Peminjaman::create([
+                'number' => $this->generateNumberLend(),
+                'lend_date' => $data['borrowing_date'],
+                'return_date' => $data['return_date'],
+                'siswa_id' => $data['user_id'],
             ]);
+
+            foreach ($data['buku_id'] as $index => $buku_id) {
+                $qty = $data['qty'][$index];
+
+                $buku = Buku::findOrFail($buku_id);
+
+                if ($buku->stok_buku < $qty) {
+                    throw new \Exception("Stok buku '{$buku->nama_buku}' tidak mencukupi untuk jumlah {$qty}");
+                }
+
+                $buku->stok_buku -= $qty;
+                $buku->save();
+
+                ItemLends::create([
+                    'qty' => $qty,
+                    'lends_id' => $peminjaman->id,
+                    'buku_id' => $buku_id,
+                    'status' => 'Belum',
+                ]);
+            }
+
+            DB::commit();
+            return redirect()->route('peminjaman')->with('success', 'Data peminjaman buku berhasil ditambahkan.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('peminjaman')->withErrors($e->getMessage());
         }
-
-        $member = Member::findOrFail($data['member_id']);
-
-        Notification::create([
-            'title' => 'Peminjaman Buku',
-            'message' => 'Peminjaman buku oleh ' . $member->nama_member . ' telah berhasil dilakukan.',
-            'type' => 'success',
-            'status' => '0',
-        ]);
-
-        return redirect()->route('peminjaman')->with('success', 'Data peminjaman buku berhasil ditambahkan.');
     }
-
 
     public function generateNumberLend()
     {

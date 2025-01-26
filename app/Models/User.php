@@ -48,20 +48,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function getUsers($id = null)
-    {
-        if ($id) {
-            return $this->find($id);
-        }
-
-        return $this->all();
-    }
-
-    public function dataSiswa()
+    // Relasi ke tabel SiswaData
+    public function siswaData()
     {
         return $this->hasOne(SiswaData::class, 'user_id', 'id');
     }
 
+    // Relasi ke tabel Peminjaman
     public function lends()
     {
         return $this->hasMany(Peminjaman::class, 'siswa_id', 'id');

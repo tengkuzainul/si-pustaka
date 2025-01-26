@@ -66,21 +66,22 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label class="form-label" for="member_id">Select Member Name</label>
-                                    <select class="form-control @error('member_id') is-invalid @enderror text-dark select2"
-                                        name="member_id">
+                                    <label class="form-label" for="user_id">Select Siswa Name</label>
+                                    <select class="form-control @error('user_id') is-invalid @enderror text-dark select2"
+                                        name="user_id">
                                         <option disabled selected>Select</option>
                                         <optgroup label="Member Name">
-                                            @foreach ($members as $member)
-                                                <option value="{{ $member->id }}" class="text-dark"
-                                                    {{ old('member_id') == $member->id ? 'selected' : '' }}>
-                                                    {{ $member->nama_member }}
+                                            @foreach ($siswas as $siswa)
+                                                <option value="{{ $siswa->id }}" class="text-dark"
+                                                    {{ old('user_id') == $siswa->id ? 'selected' : '' }}>
+                                                    {{ $siswa->name }} | {{ $siswa->username }} |
+                                                    {{ $siswa->dataSiswa->class }}
                                                 </option>
                                             @endforeach
                                         </optgroup>
                                     </select>
 
-                                    @error('member_id')
+                                    @error('user_id')
                                         <div class="valid-feedback">
                                             {{ $message }}
                                         </div>
@@ -136,51 +137,42 @@
     </div>
 
     <script>
-        document.getElementById('add-book-item-btn').addEventListener('click', function() {
-            var bookItemTemplate = `
-              <div class="row mb-2 book-item">
-                                            <div class="col-md-10 mb-2 mt-3">
-                                                <label for="inputState" class="form-label">Buku</label>
-                                                <select class="bukuSelect form-select form-control" name="buku_id[]"
-                                                    required>
-                                                    @foreach ($books as $book)
-                                                        <option value="{{ $book->id }}">
-                                                            {{ $book->nama_buku }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2 mb-2 mt-3">
-                                                <label for="inputEmail5" class="form-label">Qty</label>
-                                                <input type="number" class="form-control" name="qty[]" min="1"
-                                                    value="1" required>
-                                            </div>
-                                            <div class="col-md-12 text-end mt-2">
-                                                <button type="button" class="btn btn-danger btn-sm remove-book-item-btn">
-                                                    <i class="mdi mdi-delete"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-          `;
+        document.addEventListener('DOMContentLoaded', function() {
+            const addBookItemBtn = document.getElementById('add-book-item-btn');
+            const bookItemsContainer = document.getElementById('book-items');
 
-            var bookItemsContainer = document.getElementById('book-items');
-            bookItemsContainer.insertAdjacentHTML('beforeend', bookItemTemplate);
+            addBookItemBtn.addEventListener('click', function() {
+                const bookItemTemplate = `
+            <div class="row mb-2 book-item">
+                <div class="col-md-10 mb-2 mt-3">
+                    <label for="inputState" class="form-label">Buku</label>
+                    <select class="bukuSelect form-select form-control" name="buku_id[]" required>
+                        <option disabled selected>Pilih Buku</option>
+                        ${Array.from(document.querySelectorAll('.bukuSelect option'))
+                            .map(option => `<option value="${option.value}">${option.textContent}</option>`)
+                            .join('')}
+                    </select>
+                </div>
+                <div class="col-md-2 mb-2 mt-3">
+                    <label for="inputEmail5" class="form-label">Qty</label>
+                    <input type="number" class="form-control" name="qty[]" min="1" value="1" required>
+                </div>
+                <div class="col-md-12 text-end mt-2">
+                    <button type="button" class="btn btn-danger btn-sm remove-book-item-btn">
+                        <i class="mdi mdi-delete"></i>
+                    </button>
+                </div>
+            </div>
+        `;
 
-            var newSelect = bookItemsContainer.lastElementChild.querySelector('.bukuSelect');
-            new Choices(newSelect);
-
-            var removeButtons = bookItemsContainer.getElementsByClassName('remove-book-item-btn');
-            for (var i = 0; i < removeButtons.length; i++) {
-                removeButtons[i].addEventListener('click', function() {
-                    this.closest('.book-item').remove();
-                });
-            }
-        });
-
-        var removeButtons = document.getElementsByClassName('remove-book-item-btn');
-        for (var i = 0; i < removeButtons.length; i++) {
-            removeButtons[i].addEventListener('click', function() {
-                this.closest('.book-item').remove();
+                bookItemsContainer.insertAdjacentHTML('beforeend', bookItemTemplate);
             });
-        }
+
+            bookItemsContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('remove-book-item-btn')) {
+                    e.target.closest('.book-item').remove();
+                }
+            });
+        });
     </script>
 @endsection

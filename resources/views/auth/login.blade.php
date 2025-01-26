@@ -108,7 +108,8 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6 text-end">
-                                        <button class="btn btn-primary rounded-pill w-lg waves-effect waves-light"
+                                        <button
+                                            class="btn btn-{{ $errors->any() ? 'danger' : 'primary' }} rounded-pill w-lg waves-effect waves-light"
                                             type="submit">Log
                                             In <i
                                                 class="ms-2 {{ $errors->any() ? 'bi bi-emoji-frown-fill' : 'bi bi-emoji-smile-fill' }}"></i></button>
@@ -118,10 +119,10 @@
                             </form>
 
                             <div class="mt-5 pt-4 text-center">
+                                &copy; &mdash;
                                 <script>
                                     document.write(new Date().getFullYear())
-                                </script> Sistem Informasi Perpustakaan.
-                                </p>
+                                </script> <span class="ms-2">Sistem Informasi Perpustakaan.</span>
                             </div>
 
                         </div>

@@ -18,13 +18,15 @@ class ItemLends extends Model
         'buku_id',
     ];
 
+    // Relasi ke tabel Buku
     public function buku()
     {
-        return $this->belongsTo(Buku::class, 'buku_id');
+        return $this->belongsTo(Buku::class, 'buku_id', 'id');
     }
 
-    public function lend()
+    // Relasi ke tabel Peminjaman
+    public function peminjaman()
     {
-        return $this->belongsTo(Peminjaman::class, 'lends_id');
+        return $this->belongsTo(Peminjaman::class, 'lends_id', 'id');
     }
 }

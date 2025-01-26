@@ -111,8 +111,9 @@
                                 </li>
 
                                 @auth
-                                    <li class="menu-item {{ Request::is('books/books-catalog') ? 'active' : '' }}"><a
-                                            href="{{ route('book.catalog') }}" class="nav-link">Data Peminjaman Saya</a>
+                                    <li class="menu-item {{ request()->routeIs('siswa.peminjaman') ? 'active' : '' }}"><a
+                                            href="{{ route('siswa.peminjaman') }}" class="nav-link">Data Peminjaman
+                                            Saya</a>
                                     </li>
                                     </li>
                                 @endauth

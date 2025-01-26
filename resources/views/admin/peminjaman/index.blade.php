@@ -44,7 +44,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Borrowing Code</th>
-                                        <th>Member Name</th>
+                                        <th>Siswa Data</th>
                                         <th>Borrowing Date</th>
                                         <th>Return Date</th>
                                         <th>Status</th>
@@ -61,17 +61,21 @@
                                                 <span
                                                     class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">{{ $borrowing->number }}</span>
                                             </td>
-                                            <td>
+                                            <td class="d-flex flex-column gap-2">
                                                 <span
-                                                    class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">{{ $borrowing->member->nama_member }}</span>
+                                                    class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">{{ $borrowing->siswa->name }}</span>
+                                                <span
+                                                    class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">{{ $borrowing->siswa->username }}</span>
+                                                <span
+                                                    class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">{{ $borrowing->siswa->siswaData->class ?? 'N/A' }}</span>
                                             </td>
                                             <td>{{ date('d F Y', strtotime($borrowing->lend_date)) }}</td>
                                             <td>{{ date('d F Y', strtotime($borrowing->return_date)) }}</td>
                                             <td>
-                                                @if ($borrowing->pengembalian()->exists())
-                                                    <span class="badge bg-success w-100">Sudah Dikembalikan</span>
-                                                @else
+                                                @if (!$borrowing->pengembalian()->exists())
                                                     <span class="badge bg-warning w-100">Belum Dikembalikan</span>
+                                                @else
+                                                    <span class="badge bg-success w-100">Sudah Dikembalikan</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -105,8 +109,8 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="modalUpdatedLabel">
-                                                                Modal Create Return Member |
-                                                                {{ $borrowing->member->nama_member }}
+                                                                Modal Konfirmasi Pengembalian Buku |
+                                                                {{ $borrowing->siswa->name }}
                                                             </h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
@@ -120,7 +124,7 @@
                                                                     <div class="col-md-12">
                                                                         <div class="d-flex justify-content-start gap-3">
                                                                             <div class="mx-1">
-                                                                                <p class="text-body fw-medium">Member Name
+                                                                                <p class="text-body fw-medium">Siswa Data
                                                                                 </p>
                                                                                 <p class="text-body fw-medium">Borrowing
                                                                                     Date</p>
@@ -132,7 +136,9 @@
                                                                             <div class="mx-1">
                                                                                 <p class="text-body fw-medium">
                                                                                     <span
-                                                                                        class="me-2">:</span>{{ $borrowing->member->nama_member }}
+                                                                                        class="me-2">:</span>{{ $borrowing->siswa->name }}
+                                                                                    | {{ $borrowing->siswa->username }} |
+                                                                                    {{ $borrowing->siswa->siswaData->class }}
                                                                                 </p>
                                                                                 <p class="text-body fw-medium">
                                                                                     <span
@@ -193,7 +199,7 @@
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="modalUpdatedLabel">
                                                                 Detail Borrowing |
-                                                                {{ $borrowing->member->nama_member }}
+                                                                {{ $borrowing->siswa->name }}
                                                             </h5>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
@@ -207,7 +213,7 @@
                                                                     <div class="col-md-12">
                                                                         <div class="d-flex justify-content-start gap-3">
                                                                             <div class="mx-1">
-                                                                                <p class="text-body fw-medium">Member Name
+                                                                                <p class="text-body fw-medium">Siswa Data
                                                                                 </p>
                                                                                 <p class="text-body fw-medium">Borrowing
                                                                                     Date</p>
@@ -222,7 +228,9 @@
                                                                             <div class="mx-1">
                                                                                 <p class="text-body fw-medium">
                                                                                     <span
-                                                                                        class="me-2">:</span>{{ $borrowing->member->nama_member }}
+                                                                                        class="me-2">:</span>{{ $borrowing->siswa->name }}
+                                                                                    | {{ $borrowing->siswa->username }} |
+                                                                                    {{ $borrowing->siswa->siswaData->class }}
                                                                                 </p>
                                                                                 <p class="text-body fw-medium">
                                                                                     <span

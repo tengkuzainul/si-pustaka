@@ -47,14 +47,82 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
+                                            <form class="needs-validation" novalidate
+                                                action="{{ route('siswa.peminjaman.store') }}" method="POST"
+                                                enctype="multipart/form-data" id="form-create-books">
+                                                @csrf
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <div class="d-flex justify-content-start gap-4">
+                                                            <div>
+                                                                <img src="{{ Storage::url($detail->gambar_buku) }}"
+                                                                    alt="detail" style="width: 150px">
+                                                            </div>
+                                                            <div class="list-group">
+                                                                <span>{{ $detail->kategoriBuku->nama_kategori }}</span>
+                                                                <h5>{{ $detail->nama_buku }}</h5>
+                                                                <ul>
+                                                                    <li>Nomor ISBN : <span
+                                                                            style="font-weight: bold; text-transform: capitalize">{{ $detail->isbn }}</span>
+                                                                    </li>
+                                                                    <li>Stok Buku : <span
+                                                                            style="font-weight: bold; text-transform: capitalize">{{ $detail->stok_buku != 0 ? number_format($detail->stok_buku) : 'Buku Habis.' }}</span>
+                                                                    </li>
+                                                                    <li>Status : <span
+                                                                            style="font-weight: bold; text-transform: capitalize">{{ $detail->stok_buku === 0 ? 'Tidak Bisa Dipinjam.' : 'Bisa Dipinjam.' }}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary rounded"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary rounded">Save changes</button>
-                                            </div>
+                                                    <!-- Add the buku_id input here -->
+                                                    <input type="hidden" name="buku_id" value="{{ $detail->id }}">
+
+                                                    <div class="row align-items-center g-4">
+                                                        <div class="col-md-4">
+                                                            <label for="borrowing_date" class="form-label">Tanggal
+                                                                Peminjaman</label>
+                                                            <input type="date" name="borrowing_date"
+                                                                class="form-control @error('borrowing_date') is-invalid @enderror"
+                                                                placeholder="dd M, yyyy"
+                                                                value="{{ old('borrowing_date', now()->format('Y-m-d')) }}"
+                                                                readonly>
+                                                            @error('borrowing_date')
+                                                                <div class="valid-feedback">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label for="return_date" class="form-label">Tanggal
+                                                                Pengembalian</label>
+                                                            <input type="date" name="return_date"
+                                                                class="form-control @error('return_date') is-invalid @enderror"
+                                                                placeholder="dd M, yyyy" value="{{ old('return_date') }}">
+                                                            @error('return_date')
+                                                                <div class="valid-feedback">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label for="qty" class="form-label">Jumlah Dipinjam</label>
+                                                            <input type="number" name="qty"
+                                                                class="form-control @error('qty') is-invalid @enderror"
+                                                                placeholder="Jumlah Peminjaman" value="{{ old('qty') }}">
+                                                            @error('qty')
+                                                                <div class="valid-feedback">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary rounded"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary rounded">Save changes</button>
+                                                </div>
+                                            </form>
+
                                         </div>
                                     </div>
                                 </div>

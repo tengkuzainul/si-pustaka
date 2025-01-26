@@ -9,6 +9,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PemijamanSiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UsersController;
@@ -101,6 +102,13 @@ Route::middleware(['auth', 'role:Superadmin,Admin'])->group(function () {
         Route::get('/fetch', [NotificationController::class, 'fetchNotification'])->name('notification.fetch');
         Route::post('/read', [NotificationController::class, 'readNotification'])->name('notification.read');
         Route::delete('/delete/{id}', [NotificationController::class, 'destroy'])->name('notification.destroy');
+    });
+});
+
+Route::middleware(['auth', 'role:Siswa'])->group(function () {
+    Route::prefix('siswa')->group(function () {
+        Route::get('/peminjamanku', [PemijamanSiswaController::class, 'index'])->name('siswa.peminjaman');
+        Route::post('/peminjamanku/store', [PemijamanSiswaController::class, 'store'])->name('siswa.peminjaman.store');
     });
 });
 

@@ -17,7 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $siswa = User::with('dataSiswa')
+        $siswa = User::with('siswaData')
             ->where('role', 'Siswa')
             ->latest()
             ->get();

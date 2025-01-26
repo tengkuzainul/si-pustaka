@@ -27,6 +27,7 @@
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
+    @include('sweetalert::alert')
 
     @include('layouts.landing-page.header')
 

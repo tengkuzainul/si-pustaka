@@ -33,6 +33,15 @@
                                     <div class="mb-3">
                                         <p class="text-body fw-bold h4">Charge Count :
                                             {{ 'Rp. ' . number_format($denda->jumlah_denda ?? 0) }}</p>
+                                        @php
+                                            $contohTerlambat = 2;
+                                            $total = $denda->jumlah_denda * $contohTerlambat;
+                                        @endphp
+                                        <p class="small text-danger">*Jumlah denda berlaku per 1 (satu) hari keterlambatan.
+                                            Cth: terlambat {{ $contohTerlambat }} hari =
+                                            {{ 'Rp. ' . number_format($denda->jumlah_denda ?? 0) }} x
+                                            {{ $contohTerlambat }} = {{ 'Rp. ' . number_format($total) }}
+                                        </p>
                                     </div>
                                     <label for="jumlah_denda" class="form-label">Charge Count</label>
                                     <input type="number" name="jumlah_denda"

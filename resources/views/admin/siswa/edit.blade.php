@@ -77,7 +77,7 @@
                                     <label for="class" class="form-label">Kelas</label>
                                     <input type="text" name="class"
                                         class="form-control @error('class') is-invalid @enderror"
-                                        value="{{ old('class', $siswa->dataSiswa->class ?? '') }}" id="class"
+                                        value="{{ old('class', $siswa->siswaData->class ?? '') }}" id="class"
                                         placeholder="Kelas">
                                     @error('class')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -89,13 +89,13 @@
                                     <div class="form-check form-check-inline">
                                         <input type="radio" id="L" name="gender"
                                             class="form-check-input @error('gender') is-invalid @enderror" value="L"
-                                            {{ old('gender', $siswa->dataSiswa->gender ?? '') == 'L' ? 'checked' : '' }}>
+                                            {{ old('gender', $siswa->siswaData->gender ?? '') == 'L' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="L">Laki-Laki</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input type="radio" id="P" name="gender"
                                             class="form-check-input @error('gender') is-invalid @enderror" value="P"
-                                            {{ old('gender', $siswa->dataSiswa->gender ?? '') == 'P' ? 'checked' : '' }}>
+                                            {{ old('gender', $siswa->siswaData->gender ?? '') == 'P' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="P">Perempuan</label>
                                     </div>
                                     @error('gender')

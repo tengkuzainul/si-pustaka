@@ -13,7 +13,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswas = User::with('dataSiswa')->where('role', 'Siswa')->get();
+        $siswas = User::with('siswaData')->where('role', 'Siswa')->get();
 
         $title = 'Delete Siswa!';
         $text = "Are you sure you want to delete?";
@@ -69,7 +69,7 @@ class SiswaController extends Controller
     //  */
     public function edit(string $id)
     {
-        $siswa = User::with('dataSiswa')->findOrFail($id);
+        $siswa = User::with('siswaData')->findOrFail($id);
 
         return view('admin.siswa.edit', compact('siswa'));
     }
@@ -79,7 +79,7 @@ class SiswaController extends Controller
     //  */
     public function update(Request $request, string $id)
     {
-        $siswa = User::with('dataSiswa')->findOrFail($id);
+        $siswa = User::with('siswaData')->findOrFail($id);
 
         $request->validate([
             'name' => 'sometimes|min:3|max:100',
@@ -98,9 +98,9 @@ class SiswaController extends Controller
         ]);
 
         if ($request->filled(['class', 'gender'])) {
-            $siswa->dataSiswa->update([
-                'class' => $request->input('class', $siswa->dataSiswa->class),
-                'gender' => $request->input('gender', $siswa->dataSiswa->gender),
+            $siswa->siswaData->update([
+                'class' => $request->input('class', $siswa->siswaData->class),
+                'gender' => $request->input('gender', $siswa->siswaData->gender),
             ]);
         }
 
@@ -113,7 +113,7 @@ class SiswaController extends Controller
     //  */
     public function destroy(string $id)
     {
-        User::with('dataSiswa')->findOrFail($id)
+        User::with('siswaData')->findOrFail($id)
             ->delete();
 
         return redirect()->back()

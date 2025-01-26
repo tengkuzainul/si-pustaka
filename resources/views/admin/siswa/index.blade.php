@@ -61,9 +61,9 @@
                                             <td>{{ $siswa->name }}</td>
                                             <td>{{ $siswa->email }}</td>
                                             <td>{{ $siswa->username }}</td>
-                                            <td>{{ $siswa->dataSiswa->gender == 'L' ? 'Laki Laki' : 'Perempuan' }}</td>
+                                            <td>{{ $siswa->siswaData->gender == 'L' ? 'Laki Laki' : 'Perempuan' }}</td>
                                             <td>
-                                                <span class="badge bg-primary w-100">{{ $siswa->dataSiswa->class }}</span>
+                                                <span class="badge bg-primary w-100">{{ $siswa->siswaData->class }}</span>
                                             </td>
                                             <td>
                                                 <div class="d-flex justify-content-center align-items-center gap-2">
