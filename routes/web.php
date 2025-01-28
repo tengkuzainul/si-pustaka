@@ -96,7 +96,7 @@ Route::middleware(['auth', 'role:Superadmin,Admin'])->group(function () {
     Route::prefix('pengembalian')->group(function () {
         Route::get('/list', [PengembalianController::class, 'index'])->name('pengembalian');
         Route::get('/detail/{id}', [PengembalianController::class, 'show'])->name('pengembalian.show');
-        Route::post('/request-pengembalian/save/{id}', [PengembalianController::class, 'store'])->name('pengembalian.store');
+        Route::put('/konfirmasi/{id}', [PengembalianController::class, 'updateKonfirmasiStatus'])->name('pengembalian.konfirmasi');
     });
 
     Route::prefix('notification')->group(function () {
@@ -111,6 +111,12 @@ Route::middleware(['auth', 'role:Siswa'])->group(function () {
         Route::get('/peminjamanku', [PemijamanSiswaController::class, 'index'])->name('siswa.peminjaman');
         Route::post('/peminjamanku/store', [PemijamanSiswaController::class, 'store'])->name('siswa.peminjaman.store');
         Route::get('/pengembalianku', [PengembalianSiswaController::class, 'index'])->name('siswa.pengembalian');
+    });
+});
+
+Route::middleware(['auth', 'role:Siswa,Superadmin,Admin'])->group(function () {
+    Route::prefix('pengembalian')->group(function () {
+        Route::post('/request-pengembalian/save/{id}', [PengembalianController::class, 'store'])->name('pengembalian.store');
     });
 });
 

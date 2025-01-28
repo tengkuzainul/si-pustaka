@@ -18,6 +18,7 @@ class Pengembalian extends Model
         'tanggal_pengembalian',
         'denda',
         'peminjaman_id',
+        'konfirmasi_pengembalian',
     ];
 
     public function peminjaman()

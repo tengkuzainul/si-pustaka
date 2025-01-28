@@ -31,7 +31,8 @@
                             <th>Return Date</th>
                             <th>Delay Return</th>
                             <th>Charge</th>
-                            <th class="pe-3">Status</th>
+                            <th>Status</th>
+                            <th class="pe-3">Konfirmasi Pengembalian</th>
                         </tr>
                     </thead>
 
@@ -63,6 +64,14 @@
                                     Hari
                                 </td>
                                 <td>Rp. {{ number_format($return->denda ?? 0) }}</td>
+
+                                <td>
+                                    <span
+                                        class="badge px-3 py-2 bg-{{ $return->konfirmasi_pengembalian === 'Menunggu' ? 'warning text-dark' : 'success' }}">
+                                        {{ $return->konfirmasi_pengembalian }}
+                                    </span>
+                                </td>
+
                                 <td class="pe-3">
                                     <div class="d-flex justify-content-center align-items-center gap-2">
                                         <a href="javascript:void(0);" class="btn btn-primary mt-0 rounded-pill"

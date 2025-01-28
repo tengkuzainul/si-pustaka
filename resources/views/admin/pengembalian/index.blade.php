@@ -36,6 +36,7 @@
                                         <th>Return Date</th>
                                         <th>Delay Return</th>
                                         <th>Charge</th>
+                                        <th>Status Konfirmasi</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -72,12 +73,35 @@
                                             </td>
                                             <td>Rp. {{ number_format($return->denda ?? 0) }}</td>
                                             <td>
+                                                <span
+                                                    class="badge px-3 py-2 bg-{{ $return->konfirmasi_pengembalian === 'Menunggu' ? 'warning text-dark' : 'success' }}">
+                                                    {{ $return->konfirmasi_pengembalian === 'Menunggu' ? 'Lakukan Konfirmasi!' : 'Diterima' }}
+                                                </span>
+                                            </td>
+                                            <td>
                                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                                     <a href="javascript:void(0);" class="btn btn-primary"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#modalDetailReturn-{{ $return->id }}">
+                                                        data-bs-target="#modalDetailReturn-{{ $return->id }}"
+                                                        title="Lihat Detail Pengembalian {{ $return->peminjaman->number }}">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
+
+                                                    <a href="{{ route('pengembalian.konfirmasi', $return->id) }}"
+                                                        class="btn btn-{{ $return->konfirmasi_pengembalian === 'Menunggu' ? 'success' : 'danger' }}"
+                                                        title="{{ $return->konfirmasi_pengembalian === 'Menunggu' ? 'Konfirmasi' : 'Batalkan' }} Pengembalian {{ $return->peminjaman->number }}"
+                                                        onclick="event.preventDefault(); document.getElementById('konfirmasi-form-{{ $return->id }}').submit();">
+                                                        <i
+                                                            class="mdi mdi-{{ $return->konfirmasi_pengembalian === 'Menunggu' ? 'check-circle' : 'close-circle' }}"></i>
+                                                        {{ $return->konfirmasi_pengembalian === 'Menunggu' ? 'Konfirmasi' : 'Batalkan' }}
+                                                    </a>
+
+                                                    <form action="{{ route('pengembalian.konfirmasi', $return->id) }}"
+                                                        method="POST" class="d-none"
+                                                        id="konfirmasi-form-{{ $return->id }}">
+                                                        @csrf
+                                                        @method('PUT')
+                                                    </form>
                                                 </div>
                                             </td>
 
