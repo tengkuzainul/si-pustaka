@@ -75,7 +75,7 @@
                                                 <option value="{{ $siswa->id }}" class="text-dark"
                                                     {{ old('user_id') == $siswa->id ? 'selected' : '' }}>
                                                     {{ $siswa->name }} | {{ $siswa->username }} |
-                                                    {{ $siswa->dataSiswa->class }}
+                                                    {{ $siswa->siswaData->class }}
                                                 </option>
                                             @endforeach
                                         </optgroup>

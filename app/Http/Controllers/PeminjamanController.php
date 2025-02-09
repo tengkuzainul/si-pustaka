@@ -32,7 +32,7 @@ class PeminjamanController extends Controller
 
     public function create()
     {
-        $siswas = User::with('dataSiswa')->where('role', 'Siswa')->get();
+        $siswas = User::with('siswaData')->where('role', 'Siswa')->get();
         $books = Buku::all();
 
         return view('admin.peminjaman.create', compact('siswas', 'books'));
