@@ -28,7 +28,7 @@
                                 <img src="{{ Storage::url($book->gambar_buku) }}" alt="Books" class="product-item">
                                 <button type="button"
                                     onclick="window.location.href='{{ route('book.detail', $book->id) }}'"
-                                    class="add-to-cart">Book Detail</button>
+                                    class="add-to-cart">Selengkapnya</button>
                             </figure>
                             <figcaption>
                                 <h3>{{ $book->nama_buku }}</h3>

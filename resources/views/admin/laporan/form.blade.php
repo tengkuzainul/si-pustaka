@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.app', ['title' => 'Report'])
+@extends('layouts.dashboard.app', ['title' => 'Laporan Perpustakaan'])
 
 @section('content')
     <div class="container-fluid">
@@ -9,24 +9,10 @@
                 <div class="col-md-8">
                     <h6 class="page-title">Books</h6>
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('cetak.form') }}">Report</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Form</li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('cetak.form') }}">Laporan Perpustakaan</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Formulir Pembuatan Laporan</li>
                     </ol>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="float-end d-none d-md-block">
-                        <div class="dropdown">
-                            <button class="btn btn-primary  dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="mdi mdi-book-variant me-2"></i> Create Books
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="{{ route('buku.create') }}">Add New Data</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -36,11 +22,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Form Create Books</h4>
+                            <h4 class="card-title">Formulir Pembuatan Laporan</h4>
                             <div class="row align-items-center g-3 mt-3">
 
                                 <div class="col-md-6">
-                                    <label for="tglAwal" class="form-label">First Date</label>
+                                    <label for="tglAwal" class="form-label">Tanggal Awal Laporan</label>
                                     <div class="input-group">
                                         <input type="date" class="form-control  @error('tglAwal') is-invalid @enderror"
                                             name="tglAwal" value="{{ old('tglAwal') }}" id="tglAwal">
@@ -56,7 +42,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="tglAkhir" class="form-label">End Date</label>
+                                    <label for="tglAkhir" class="form-label">Tanggal Akhir Laporan</label>
                                     <div class="input-group">
                                         <input type="date" class="form-control @error('tglAwal') is-invalid @enderror"
                                             name="tglAkhir" value="{{ old('tglAkhir') }}" id="tglAkhir">
@@ -79,7 +65,7 @@
                                 <button type="reset" class="btn btn-primary px-3"><i
                                         class="mdi mdi-rotate-right me-2"></i>Reset</button>
                                 <button type="submit" class="btn btn-success px-3"><i
-                                        class="mdi mdi-download me-2"></i>Downlod Data</button>
+                                        class="mdi mdi-download me-2"></i>Buat & Download Laporan</button>
                             </div>
                         </div>
                     </div>

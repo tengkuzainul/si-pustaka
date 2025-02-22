@@ -1,29 +1,29 @@
-@extends('layouts.dashboard.app', ['title' => 'User Management'])
+@extends('layouts.dashboard.app', ['title' => 'Manajemen Pengguna'])
 
 @section('content')
     <div class="container-fluid">
 
-        <!-- start page title -->
+        <!-- Awal Judul Halaman -->
         <div class="page-title-box">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h6 class="page-title">User Management</h6>
+                    <h6 class="page-title">Manajemen Pengguna</h6>
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('users') }}">User Management</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('users') }}">Manajemen Pengguna</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit {{ $user->name }}</li>
                     </ol>
                 </div>
 
                 <div class="col-md-4">
                     <div class="float-end d-none d-md-block">
                         <div class="dropdown">
-                            <button class="btn btn-primary  dropdown-toggle" type="button" id="dropdownMenuButton"
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="mdi mdi-account-multiple-plus me-2"></i> Create Users
+                                <i class="mdi mdi-account-multiple-plus me-2"></i> Tambah Pengguna
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="{{ route('users.create') }}">Add New Data</a>
+                                <a class="dropdown-item" href="{{ route('users.create') }}">Tambah Data Baru</a>
                             </div>
                         </div>
                     </div>
@@ -40,19 +40,19 @@
                         @method('PUT')
 
                         <div class="card-body">
-                            <h4 class="card-title">Form Edit User</h4>
+                            <h4 class="card-title">Form Edit Pengguna</h4>
                             <div class="row align-items-center g-3">
                                 <div class="col-md-4">
                                     <div class="d-flex justify-content-center mb-4">
                                         <img id="selectedAvatar"
                                             src="{{ $user->image_profile ? Storage::url($user->image_profile) : 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg' }}"
                                             class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;"
-                                            alt="example placeholder" />
+                                            alt="gambar contoh" />
                                     </div>
 
                                     <div class="d-flex justify-content-center">
                                         <div data-mdb-ripple-init class="btn btn-primary btn-rounded">
-                                            <label class="form-label text-white m-1" for="customFile2">Choose file</label>
+                                            <label class="form-label text-white m-1" for="customFile2">Pilih Berkas</label>
                                             <input type="file" name="image_profile" class="form-control d-none"
                                                 id="customFile2" onchange="displaySelectedImage(event, 'selectedAvatar')" />
                                         </div>
@@ -60,11 +60,10 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="name" class="form-label">Fullname</label>
+                                    <label for="name" class="form-label">Nama Lengkap</label>
                                     <input type="text" name="name"
                                         class="form-control @error('name') is-invalid @enderror"
-                                        value="{{ old('name', $user->name) }}" id="name" placeholder="Fullname"
-                                        autofocus>
+                                        value="{{ old('name', $user->name) }}" id="name" placeholder="Nama Lengkap">
 
                                     @error('name')
                                         <div class="valid-feedback">
@@ -88,11 +87,11 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label" for="role">Single Select</label>
+                                    <label class="form-label" for="role">Pilih Peran</label>
                                     <select class="form-control @error('role') is-invalid @enderror text-dark select2"
                                         name="role">
-                                        <option disabled>Select</option>
-                                        <optgroup label="Role">
+                                        <option disabled>Pilih</option>
+                                        <optgroup label="Peran">
                                             <option value="Superadmin" class="text-dark"
                                                 {{ $user->role == 'Superadmin' ? 'selected' : '' }}>Superadmin</option>
                                             <option value="Admin" class="text-dark"
@@ -121,10 +120,10 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="password" class="form-label">Password</label>
+                                    <label for="password" class="form-label">Kata Sandi</label>
                                     <input type="password" name="password"
                                         class="form-control @error('password') is-invalid @enderror"
-                                        value="{{ old('password') }}" id="password" placeholder="Password">
+                                        value="{{ old('password') }}" id="password" placeholder="Kata Sandi">
 
                                     @error('password')
                                         <div class="valid-feedback">
@@ -134,11 +133,11 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="password_confirmation" class="form-label">Confirmation Password</label>
+                                    <label for="password_confirmation" class="form-label">Konfirmasi Kata Sandi</label>
                                     <input type="password" name="password_confirmation"
                                         class="form-control @error('password_confirmation') is-invalid @enderror"
                                         value="{{ old('password_confirmation') }}" id="password_confirmation"
-                                        placeholder="Confirmation Password">
+                                        placeholder="Konfirmasi Kata Sandi">
 
                                     @error('password_confirmation')
                                         <div class="valid-feedback">
@@ -151,15 +150,15 @@
 
                         <div class="card-footer">
                             <div class="d-flex justify-content-between align-items-center">
-                                <button type="submit" class="btn btn-primary px-3"><i
+                                <button type="reset" class="btn btn-primary px-3"><i
                                         class="mdi mdi-rotate-right me-2"></i>Reset</button>
                                 <button type="submit" class="btn btn-success px-3"><i
-                                        class="mdi mdi-check-circle me-2"></i>Save Data</button>
+                                        class="mdi mdi-check-circle me-2"></i>Simpan Data</button>
                             </div>
                         </div>
                     </form>
                 </div>
-            </div> <!-- end col -->
+            </div> <!-- akhir col -->
         </div>
     </div>
 

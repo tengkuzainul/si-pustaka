@@ -4,7 +4,8 @@
             <div class="row">
 
                 <div class="col-md-6">
-                    <p>© {{ now()->format('Y') }} All rights reserved. Develop By <a href="{{ url('/') }}">Sistem
+                    <p>&copy; {{ now()->format('Y') }} Semua hak dilindungi undang-undang. Dikembangkan Oleh <a
+                            href="{{ url('/') }}">Sistem
                             Informasi Perpustakaan</a>
                     </p>
                 </div>

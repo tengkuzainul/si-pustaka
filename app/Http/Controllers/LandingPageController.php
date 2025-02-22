@@ -15,13 +15,15 @@ class LandingPageController extends Controller
      */
     public function index()
     {
+        $carouselsBooks = Buku::take(5)->get();
+
         $books = Buku::inRandomOrder()->get();
 
         $bookCategories = KategoriBuku::with(['buku' => function ($query) {
             $query->inRandomOrder()->take(8);
         }])->take(5)->get();
 
-        return view('landing-page.home', compact('books', 'bookCategories'));
+        return view('landing-page.home', compact('books', 'bookCategories', "carouselsBooks"));
     }
 
 

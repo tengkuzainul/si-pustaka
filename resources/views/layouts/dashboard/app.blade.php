@@ -3,7 +3,7 @@
 
 @include('layouts.dashboard.head')
 
-<body data-sidebar="dark" data-bs-theme="dark" data-topbar="dark">
+<body data-sidebar="dark" data-bs-theme="ligth" data-topbar="light">
     @include('sweetalert::alert')
 
     <!-- Begin page -->

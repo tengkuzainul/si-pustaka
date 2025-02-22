@@ -25,8 +25,7 @@
                     <div class="right-element">
                         @guest
                             <a href="{{ route('login') }}" class="user-account for-buy"><i
-                                    class="icon icon-user"></i><span>&nbsp;Login
-                                    Portal</span></a>
+                                    class="icon icon-user"></i><span>&nbsp;Portal Login</span></a>
                         @endguest
 
                         @auth

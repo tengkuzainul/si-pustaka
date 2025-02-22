@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.app', ['title' => 'Return Books'])
+@extends('layouts.dashboard.app', ['title' => 'Pengembalian Buku'])
 
 @section('content')
     <div class="container-fluid">
@@ -9,9 +9,9 @@
                 <div class="col-md-8">
                     <h6 class="page-title">Return Books</h6>
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('pengembalian') }}">Return Books</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('pengembalian') }}">Pengembalian Buku</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">List Data</li>
                     </ol>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="card-title">All Users</h4>
+                        <h4 class="card-title">Daftar Pengembalian</h4>
                         <div class="table-responsive mb-3 fixed-solution mt-4">
                             <table id="datatable" class="table table-bordered dt-responsive nowrap"
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -30,14 +30,14 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Borrowing Code</th>
-                                        <th>Member Name</th>
-                                        <th>Early Return Date</th>
-                                        <th>Return Date</th>
-                                        <th>Delay Return</th>
-                                        <th>Charge</th>
+                                        <th>Kode Peminjaman</th>
+                                        <th>Nama Peminjam</th>
+                                        <th>Tanggal Pengembalian Awal</th>
+                                        <th>Tanggal Pengembalian Akhir</th>
+                                        <th>Keterlambatan</th>
+                                        <th>Denda</th>
                                         <th>Status Konfirmasi</th>
-                                        <th>Actions</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
 
@@ -54,10 +54,20 @@
                                             </td>
                                             <td>
                                                 @if ($return->peminjaman->siswa)
-                                                    <span
-                                                        class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">
-                                                        {{ $return->peminjaman->siswa->name }}
-                                                    </span>
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <span
+                                                            class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">
+                                                            {{ $return->peminjaman->siswa->name }}
+                                                        </span>
+                                                        <span
+                                                            class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">
+                                                            {{ $return->peminjaman->siswa->username }}
+                                                        </span>
+                                                        <span
+                                                            class="badge px-3 py-2 bg-{{ $key % 2 == 0 ? 'primary' : 'secondary text-dark' }}">
+                                                            {{ $return->peminjaman->siswa->siswaData->class }}
+                                                        </span>
+                                                    </div>
                                                 @else
                                                     <span class="badge bg-danger">No Member</span>
                                                 @endif
@@ -113,7 +123,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="modalUpdatedLabel">
-                                                                Detail Borrowing |
+                                                                Detail Pengembalian |
                                                                 {{ $return->peminjaman->siswa->name }}
                                                             </h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -125,21 +135,24 @@
                                                                 <div class="col-md-12">
                                                                     <div class="d-flex justify-content-start gap-3">
                                                                         <div class="mx-1">
-                                                                            <p class="text-body fw-medium">Member
-                                                                                Name</p>
-                                                                            <p class="text-body fw-medium">Early
-                                                                                Return Date</p>
-                                                                            <p class="text-body fw-medium">Return
-                                                                                Date</p>
-                                                                            <p class="text-body fw-medium">Delay
-                                                                                Return</p>
-                                                                            <p class="text-body fw-medium">Book
-                                                                                Borrowing</p>
+                                                                            <p class="text-body fw-medium">Data Peminjamn
+                                                                            </p>
+                                                                            <p class="text-body fw-medium">Tanggal
+                                                                                Pengembalian Awal</p>
+                                                                            <p class="text-body fw-medium">Tanggal
+                                                                                Pengembalian Akhir</p>
+                                                                            <p class="text-body fw-medium">Keterlambatan</p>
+                                                                            <p class="text-body fw-medium">Buku Yang
+                                                                                Dipinjam</p>
                                                                         </div>
                                                                         <div class="mx-1">
                                                                             <p class="text-body fw-medium">
                                                                                 <span
                                                                                     class="me-2">:</span>{{ $return->peminjaman->siswa->name }}
+                                                                                |
+                                                                                {{ $return->peminjaman->siswa->username }}
+                                                                                |
+                                                                                {{ $return->peminjaman->siswa->siswaData->class }}
                                                                             </p>
                                                                             <p class="text-body fw-medium">
                                                                                 <span

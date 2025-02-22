@@ -1,16 +1,16 @@
-@extends('layouts.dashboard.app', ['title' => 'Books'])
+@extends('layouts.dashboard.app', ['title' => 'Daftar Buku'])
 
 @section('content')
     <div class="container-fluid">
 
-        <!-- start page title -->
+        <!-- Judul Halaman -->
         <div class="page-title-box">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h6 class="page-title">Books</h6>
+                    <h6 class="page-title">Daftar Buku</h6>
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('buku') }}">Books Management</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('buku') }}">Manajemen Buku</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Data</li>
                     </ol>
                 </div>
@@ -18,12 +18,12 @@
                 <div class="col-md-4">
                     <div class="float-end d-none d-md-block">
                         <div class="dropdown">
-                            <button class="btn btn-primary  dropdown-toggle" type="button" id="dropdownMenuButton"
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="mdi mdi-book-variant me-2"></i> Create Books
+                                <i class="mdi mdi-book-variant me-2"></i> Tambah Buku
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="{{ route('buku.create') }}">Add New Data</a>
+                                <a class="dropdown-item" href="{{ route('buku.create') }}">Tambah Data Baru</a>
                             </div>
                         </div>
                     </div>
@@ -35,31 +35,28 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-
-                        <h4 class="card-title">All Books</h4>
+                        <h4 class="card-title">Semua Buku</h4>
                         <div class="table-responsive mb-3 fixed-solution mt-4">
                             <table id="datatable" class="table table-bordered dt-responsive nowrap"
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>ISBN</th>
-                                        <th>Books Name</th>
-                                        <th>Books Stock</th>
-                                        <th>Book Category</th>
-                                        <th>Actions</th>
+                                        <th>Judul Buku</th>
+                                        <th>Stok Buku</th>
+                                        <th>Kategori Buku</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
-
-
                                 <tbody>
                                     @foreach ($books as $key => $book)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
-                                                <span
-                                                    class="badge bg-{{ $key % 2 == 0 ? 'primary' : 'info' }} w-100">{{ $book->isbn }}</span>
+                                                <span class="badge bg-{{ $key % 2 == 0 ? 'primary' : 'info' }} w-100">
+                                                    {{ $book->isbn }}
+                                                </span>
                                             </td>
                                             <td>{{ $book->nama_buku }}</td>
                                             <td>{{ $book->stok_buku }}</td>

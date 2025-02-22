@@ -25,14 +25,14 @@
                     <thead>
                         <tr>
                             <th class="ps-3">No</th>
-                            <th>Borrowing Code</th>
-                            <th>Siswa Data</th>
-                            <th>Early Return Date</th>
-                            <th>Return Date</th>
-                            <th>Delay Return</th>
-                            <th>Charge</th>
+                            <th>Kode Peminjaman</th>
+                            <th>Data Siswa</th>
+                            <th>Tanggal Peminjaman Awal</th>
+                            <th>Tanggal Peminjaman Awal</th>
+                            <th>Keterlambatan</th>
+                            <th>Denda</th>
                             <th>Status</th>
-                            <th class="pe-3">Konfirmasi Pengembalian</th>
+                            <th class="pe-3">Aksi</th>
                         </tr>
                     </thead>
 

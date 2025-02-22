@@ -94,7 +94,7 @@
 
 <body>
     <header>
-        <h1 class="title">Borrowing And Return Book Report</h1>
+        <h1 class="title">Laporan Perpustakaan</h1>
     </header>
 
     <section>
@@ -102,12 +102,12 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Member Name</th>
-                    <th>Borrowing Date</th>
-                    <th>Early Return Date</th>
-                    <th>Return Date</th>
-                    <th>Charge</th>
-                    <th>Status</th>
+                    <th>Nama Peminjam</th>
+                    <th>Tanggal Peminjaman</th>
+                    <th>Tanggal Pengembalian Awal</th>
+                    <th>Tanggal Pengembalian Akhir</th>
+                    <th>Denda</th>
+                    <th>Data Status</th>
                 </tr>
             </thead>
             <tbody>
